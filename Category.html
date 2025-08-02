@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H&M-kppn.com</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="sciptH&M.js" defer></script>
+    <link rel="icon" href="Assets/H&M-Logo.svg.png">
+    <style>
+        button{
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #cc071e; 
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer; 
+        transition: background-color 0.3s ease;
+        margin-left: 50px;
+        margin-right: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <a href="H&M1.html">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/188px-H%26M-Logo.svg.png" alt="H&M Logo" style="width:176px;height: 99px;">
+
+    </a>
+    <p class="inspirational-quote">
+                    "Don't look back <br>you're not going&nbsp;that&nbsp;way."
+                </p>
+
+    <nav>
+        <div class="nav-links">
+             <a href="Women.html">Women</a>
+            <a href="Men.html">Men</a>
+            <a href="Kids.html">Children</a>
+            <a href="Sport.html">Sport</a>
+            <a href="AboutUs-h&m (1).html">About Us</a>
+            <a href="ContactUs.html">Contact Us</a>
+                <div class="dropdown">
+                   <span>More</span>
+                    <div class="dropdown-content">
+                      <a href="MapStore.html">
+                          <p>Location Map</p>
+                      </a>
+                      <a href="Inquiry.html">
+                        <p>Inquiry Form</p>
+                    </a>
+                    <a href="Chart.html">
+                        <p>Size Charts</p>
+                    </a>
+                    <a href="FAQ.html">
+                        <p>FAQ's</p>
+                    </a>
+                    </div>
+                </div>        
+       </div >
+        <div class="searchbar">
+            <input type="text" placeholder="Search..." class="search-input">
+            <button type="submit" class="search-button">
+                <a href="Search.html">🔍</a>
+            </button>
+        </div>
+    </nav>
+    <hr>
+    </header>
+    <div class="box">
+        <h2> Which category are you interested to buy clothes?</h2>
+        <button onclick="window.open('Women.html','_blank')" 
+        onmouseover="this.style.backgroundColor='#a7001e';"
+        onmouseout="this.style.backgroundColor='#cc071e';"
+        onmousedown="this.style.backgroundColor='#8a001e';"
+        onmouseup="this.style.backgroundColor='#a7001e';"> Women's Clothing </button>
+        <button onclick="window.open('Men.html','_blank')" 
+        onmouseover="this.style.backgroundColor='#a7001e';"
+        onmouseout="this.style.backgroundColor='#cc071e';"
+        onmousedown="this.style.backgroundColor='#8a001e';"
+        onmouseup="this.style.backgroundColor='#a7001e';"> Men's Clothing </button>
+        <button onclick="window.open('Kids.html','_blank')" 
+        onmouseover="this.style.backgroundColor='#a7001e';"
+        onmouseout="this.style.backgroundColor='#cc071e';"
+        onmousedown="this.style.backgroundColor='#8a001e';"
+        onmouseup="this.style.backgroundColor='#a7001e';"> Kids' and Babies' Clothing </button>
+        <button onclick="window.open('Sport.html','_blank')" 
+        onmouseover="this.style.backgroundColor='#a7001e';"
+        onmouseout="this.style.backgroundColor='#cc071e';"
+        onmousedown="this.style.backgroundColor='#8a001e';"
+        onmouseup="this.style.backgroundColor='#a7001e';"> Sports Clothing</button>
+    </div>
+    <footer>
+        <h2 align="centered">  CALL US FOR INQUIRIES : 1800 180 032 </h2>
+        <h4> Last Modified&#58; <pre id="update"></pre>
+        <h2> Our Social Media </h2>
+        <div class="contacts">
+            <p> <a href="https://www.facebook.com/hm/" target="_blank"> <img src ="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/900px-2023_Facebook_icon.svg.png"></a>
+            <a href="https://www.instagram.com/hm/?hl=en" target="_blank"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/225px-Instagram_logo_2022.svg.png"></a> 
+            <a href="https://x.com/hmmalaysia?lang=en" target="_blank"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/X_logo_2023.svg/150px-X_logo_2023.svg.png"></a>
+            <a href="https://tiktok.com/@hm?lang=en" target="_blank"> <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a9/TikTok_logo.svg/330px-TikTok_logo.svg.png"></a></p>
+        </div>
+        <p> &copy;2024 H&M Malaysia </p>
+    </footer>
+    <script>
+    function clr(){
+        document.body.classList.toggle("dark-mode");
+    }
+    document.getElementById("update").innerHTML = document.lastModified;
+
+
+    </script>
+</body>
+</html>

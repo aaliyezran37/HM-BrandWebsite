@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H&M-kppn.com</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="sciptH&M.js" defer></script>
+    <link rel="icon" href="Assets/H&M-Logo.svg.png">
+</head>
+   <style>
+        .cart-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .cart-item h3 {
+            margin: 0;
+        }
+        .cart-item p {
+            margin: 5px 0;
+        }
+        .remove-btn {
+            background-color: #cc071e;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .remove-btn:hover {
+            background-color: #a10516;
+        }
+
+        /* Submit Order Button */
+        .submit-order-btn {
+            background-color: #cc071e;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .submit-order-btn:hover {
+            background-color: #a10516;
+        }
+
+        /* Custom alert box for the order confirmation */
+        #confirmation-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            z-index: 1000;
+            display: none;
+            text-align: center;
+        }
+
+        #confirmation-box p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .confirm-btn, .cancel-btn {
+            background-color: #cc071e;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .confirm-btn:hover, .cancel-btn:hover {
+            background-color: #a10516;
+        }
+
+        /* Overlay to darken background when confirmation box appears */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+    </style>
+<body>
+    <header>
+    <a href="H&M1.html">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/188px-H%26M-Logo.svg.png" alt="H&M Logo" style="width:176px;height: 99px;">
+
+    </a>
+    <p class="inspirational-quote">
+                    "Don't look back <br>you're not going&nbsp;that&nbsp;way."
+                </p>
+
+    <nav>
+        <div class="nav-links">
+            <a href="Women.html">Women</a>
+            <a href="Men.html">Men</a>
+            <a href="Kids.html">Children</a>
+            <a href="Sport.html">Sport</a>
+            <a href="AboutUs-h&m (1).html">About Us</a>
+            <a href="ContactUs.html">Contact Us</a>
+            <a href="cart.html"> 🛒</a>    
+       </div >
+        <div class="searchbar">
+            <input type="text" placeholder="Search..." class="search-input">
+            <button type="submit" class="search-button">
+                <a href="Search.html">🔍</a>
+            </button>
+        </div>
+    </nav>
+    <hr>
+    </header>
+    <h1>Your Shopping Cart</h1>
+    <div id="cart-items">
+    </div>
+    <button class="submit-order-btn" id="submit-order-btn">Submit Order</button>
+
+    <!-- Confirmation Box -->
+    <div id="confirmation-box">
+        <p>Would you like to add more items?</p>
+        <button class="confirm-btn" id="yes-btn">Yes</button>
+        <button class="cancel-btn" id="no-btn">No</button>
+    </div>
+
+    <!-- Overlay for darkening the background -->
+    <div id="overlay"></div>
+    <footer>
+        <h2 align="centered">  CALL US FOR INQUIRIES : 1800 180 032 </h2>
+        <h4> Last Modified&#58; <pre id="update"></pre>
+        <h2> Our Social Media </h2>
+        <div class="contacts">
+            <p> <a href="https://www.facebook.com/hm/" target="_blank"> <img src ="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/900px-2023_Facebook_icon.svg.png"></a>
+            <a href="https://www.instagram.com/hm/?hl=en" target="_blank"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/225px-Instagram_logo_2022.svg.png"></a> 
+            <a href="https://x.com/hmmalaysia?lang=en" target="_blank"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/X_logo_2023.svg/150px-X_logo_2023.svg.png"></a>
+            <a href="https://tiktok.com/@hm?lang=en" target="_blank"> <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a9/TikTok_logo.svg/330px-TikTok_logo.svg.png"></a></p>
+        </div>
+        <p> &copy;2024 H&M Malaysia </p>
+    </footer>
+    <script>
+    function clr(){
+        document.body.classList.toggle("dark-mode");
+    }
+    document.getElementById("update").innerHTML = document.lastModified;
+    
+     window.onload = function() {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartContainer = document.getElementById('cart-items');
+            const submitOrderBtn = document.getElementById('submit-order-btn');
+            const confirmationBox = document.getElementById('confirmation-box');
+            const overlay = document.getElementById('overlay');
+            const yesBtn = document.getElementById('yes-btn');
+            const noBtn = document.getElementById('no-btn');
+
+            // Display cart items
+            if (cartItems.length > 0) {
+                cartItems.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.classList.add('cart-item');
+                    itemElement.innerHTML = `
+                        <h3>${item.name}</h3>
+                        <p>Price: RM ${parseFloat(item.price).toFixed(2)}</p>
+                        <button class="remove-btn" onclick="removeFromCart('${item.name}')">Remove</button>
+                    `;
+                    cartContainer.appendChild(itemElement);
+                });
+            } else {
+                cartContainer.innerHTML = '<p>Your cart is empty. <a href="Category.html">Continue shopping</a>.</p>';
+            }
+
+            // Function to remove items from the cart
+            window.removeFromCart = function(itemName) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart = cart.filter(item => item.name !== itemName);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                location.reload(); // Reload the page to update cart
+            };
+
+            // Event listener for the Submit Order button
+            submitOrderBtn.addEventListener('click', () => {
+                confirmationBox.style.display = 'block';
+                overlay.style.display = 'block';
+            });
+
+            // Event listener for "Yes" button in confirmation box
+            yesBtn.addEventListener('click', () => {
+                // Simply hide the confirmation box and overlay if the user wants to add more items
+                confirmationBox.style.display = 'none';
+                overlay.style.display = 'none';
+            });
+
+            // Event listener for "No" button in confirmation box
+            noBtn.addEventListener('click', () => {
+                // Clear the cart and hide the confirmation box and overlay
+                localStorage.removeItem('cart');
+                confirmationBox.style.display = 'none';
+                overlay.style.display = 'none';
+                cartContainer.innerHTML = '<p>Order Submitted! <a href="Category.html">Continue shopping</a>.</p>';
+            });
+
+            // Debugging log
+            console.log('Cart items on cart.html:', cartItems);
+        };
+    </script>
+</body>
+</html>

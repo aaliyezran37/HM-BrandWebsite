@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H&M-kppn.com</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="Assets/H&M-Logo.svg.png">
+    <style>
+        .mySlides {
+            display: none; /* Hide all slides by default */
+        }
+
+        .mySlides img {
+            vertical-align: middle; /* Align images to the middle */
+        }
+
+        .mySlides:nth-child(1) {
+            display: block; /* Show the first slide initially */
+        }
+
+        /* Add a pointer when hovering over the thumbnail images */
+        .cursor {
+            cursor: pointer; /* Change cursor to pointer */
+        }
+
+        /* Next & previous buttons */
+        .prev,
+        .next {
+            cursor: pointer; /* Change cursor to pointer for buttons */
+            position: absolute; /* Position buttons absolutely */
+            top: 40%; /* Center buttons vertically */
+            width: auto; /* Let buttons have automatic width */
+            padding: 16px; /* Padding around buttons */
+            margin-top: -50px; /* Adjust vertical alignment */
+            color: white; /* Button text color */
+            font-weight: bold; /* Bold button text */
+            font-size: 20px; /* Font size */
+            border-radius: 0 3px 3px 0; /* Rounded corners */
+            user-select: none; /* Prevent text selection */
+            -webkit-user-select: none; /* Prevent text selection for Safari */
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            right: 0; /* Position right */
+            border-radius: 3px 0 0 3px; /* Adjust corners */
+        }
+
+        /* Hover effects for buttons */
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8); /* Dark background on hover */
+        }
+
+        /* Number text (1/3 etc) */
+        .numbertext {
+            color: #f2f2f2; /* Color for number text */
+            font-size: 12px; /* Font size */
+            padding: 8px 12px; /* Padding around number text */
+            position: absolute; /* Position number text absolutely */
+            top: 0; /* Align at the top */
+        }
+
+        /* Container for image text */
+        .caption-container {
+            text-align: center; /* Center text */
+            background-color: #222; /* Dark background */
+            padding: 2px 16px; /* Padding around caption */
+            color: white; /* Caption text color */
+        }
+
+        .row:after {
+            content: ""; /* Clearfix */
+            display: table; /* Display as table */
+            clear: both; /* Clear floats */
+        }
+
+        /* Three columns side by side */
+        .column {
+            float: left; /* Float columns left */
+            width: 33%; /* Each column takes 1/3 of the row */
+        }
+
+        /* Thumbnail images */
+        .demo {
+            opacity: 0.6; /* Default opacity for thumbnails */
+        }
+
+        .active,
+        .demo:hover {
+            opacity: 1; /* Full opacity for active and hovered thumbnails */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="H&M1.html">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/188px-H%26M-Logo.svg.png" alt="H&M Logo" style="width:176px;height: 99px;">
+        </a>
+        <p class="inspirational-quote">
+            "Don't look back <br>you're not going&nbsp;that&nbsp;way."
+        </p>
+    </header>
+
+    <div class="container-s">
+        <div class="mySlides">
+            <div class="numbertext">1 / 3</div>
+            <img src="Assets/men.jpeg" style="width:100%">
+            <div class="caption-container">
+                <p>A/w 2024 Men's Collection</p>
+            </div>
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">2 / 3</div>
+            <img src="Assets/women.jpeg" style="width:100%">
+            <div class="caption-container">
+                <p>A/w 2024 Women's Collection</p>
+            </div>
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">3 / 3</div>
+            <img src="Assets/Halloween.jpeg" style="width:100%">
+            <div class="caption-container">
+                <p>Kid's Halloween Collection</p>
+            </div>
+        </div>
+        
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+
+        <div class="row">
+            <div class="column">
+                <img class="demo cursor" src="Assets/men.jpeg" style="width:100%" onclick="currentSlide(1)" alt="A/w 2024 Men's Collection">
+            </div>
+            <div class="column">
+                <img class="demo cursor" src="Assets/women.jpeg" style="width:100%" onclick="currentSlide(2)" alt="A/w 2024 Women's Collection">
+            </div>
+            <div class="column">
+                <img class="demo cursor" src="Assets/Halloween.jpeg" style="width:100%" onclick="currentSlide(3)" alt="Kid's Halloween Collection">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("demo");
+            let captionText = document.getElementById("caption");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none"; // Hide all slides
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block"; // Show the current slide
+            dots[slideIndex - 1].className += " active"; // Highlight the active thumbnail
+            captionText.innerHTML = dots[slideIndex - 1].alt; // Update caption
+        }
+
+        // Allow navigation with arrow keys
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowLeft') {
+                plusSlides(-1); // Move to previous slide
+            } else if (event.key === 'ArrowRight') {
+                plusSlides(1); // Move to next slide
+            }
+        });
+    </script>
+</body>
+</html>
